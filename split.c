@@ -1,6 +1,5 @@
 #include "fdf.h"
 
-
 static int	count_length(char *s, char c, int i)
 {
 	int	counter;

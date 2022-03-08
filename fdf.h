@@ -1,5 +1,5 @@
 #ifndef FDF_H
-#define FDF_H
+# define FDF_H
 
 #include <fcntl.h>
 #include <unistd.h>
@@ -7,10 +7,12 @@
 #include <errno.h>
 #include <string.h>
 #include <stdio.h>
+#include <stdint.h>
 
 # define FILE_ERROR 1
 # define IN 1 
 # define OUT 0
+# define BUFFER_SIZE 500
 
 typedef struct s_rgb
 {
@@ -21,10 +23,10 @@ typedef struct s_rgb
 
 typedef struct s_map
 {
-	int		line_count;
-	int		word_count;
-	int		**map_values;
-	char	**map_colors;
+	int	line_count;
+	int	word_count;
+	int	**map_values;
+	int	**map_colors;
 }	t_map;
 
 typedef struct s_img
@@ -38,23 +40,33 @@ typedef struct s_img
 
 typedef struct s_fdf
 {
-	void *mlx_ptr;
-	void *win_ptr;
-	t_img *img;
+	void	*mlx_ptr;
+	void	*win_ptr;
+	t_img	*img;
+	t_map	*map;
+	t_rgb	*rgb;
 } 	t_fdf;
-
 
 void	ft_parse_values(int fd, char *path, t_map *map);
 char	**ft_split(char const *s, char c);
 char	*get_next_line(int fd);
+char	*ft_getline(char *str, int *i);
+char	*ft_getrest(char *reminder, int *i);
+char	*ft_read_all(char *str, int fd);
 int		word_count(char	*s, char c);
 int		ft_atoi(const char *str);
 int		ft_strchr(char *str, int c);
-int		ft_check_map(int fd);
+int		ft_check_map(int fd, char *path);
 int 	count_lines(int fd, int *a);
 void	ft_free_double(char *str, char **str1, int c);
 void	ft_copy_value(int *ar, char **tmp, int c);
 void	ft_parse_color(int fd, char *path, t_map *map);
+int		hex2int(char *hex); 
+void	ft_copy_hex(int *ar, char **tmp, int c);
+int		ft_strlen(char *str);
+size_t	ft_strlcpy(char *dst, char *src, size_t size);
+char	*ft_free(char *str1, char *str2);
+char	*ft_strjoin(char *str1, char *str2);
 
 // X11 Events
 // these are only the supported events by Minilibx

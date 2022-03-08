@@ -1,5 +1,4 @@
 #include "fdf.h"
-#include "get_next_line.h"
 
 void	ft_free_double(char *str, char **str1, int c)
 {
@@ -15,9 +14,11 @@ void	ft_free_double(char *str, char **str1, int c)
 	free(str1);
 }
 
-int	ft_check_map(int fd)
+int	ft_check_map(int fd, char *path)
 {
 	char	*line;
+
+	fd = open(path, O_RDONLY);
 	line = get_next_line(fd);
 	if (!ft_strchr(line, 'x'))
 	{
