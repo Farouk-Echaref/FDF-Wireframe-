@@ -47,7 +47,7 @@ typedef struct s_fdf
 	t_rgb	*rgb;
 } 	t_fdf;
 
-void	ft_parse_values(int fd, char *path, t_map *map);
+void	ft_parse_white(char *path, t_map *map);
 char	**ft_split(char const *s, char c);
 char	*get_next_line(int fd);
 char	*ft_getline(char *str, int *i);
@@ -56,11 +56,11 @@ char	*ft_read_all(char *str, int fd);
 int		word_count(char	*s, char c);
 int		ft_atoi(const char *str);
 int		ft_strchr(char *str, int c);
-int		ft_check_map(int fd, char *path);
-int 	count_lines(int fd, int *a);
+int		ft_check_map(char *path);
+int 	count_lines(char *path, int *a);
 void	ft_free_double(char *str, char **str1, int c);
 void	ft_copy_value(int *ar, char **tmp, int c);
-void	ft_parse_color(int fd, char *path, t_map *map);
+void	ft_parse_color(char *path, t_map *map);
 int		hex2int(char *hex); 
 void	ft_copy_hex(int *ar, char **tmp, int c);
 int		ft_strlen(char *str);

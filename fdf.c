@@ -2,26 +2,15 @@
 
 int main(int argc, char **argv)
 {
-	int		fd;
-	int		check;
 	t_map 	*map;
 	
 	if (argc == 2)
 	{
-		fd = open(argv[1],O_RDONLY);
-		if (fd < 0)
-		{
-			printf("Error opening the file, %s\n", strerror(errno));
-			exit(FILE_ERROR);
-		}
 		map = (t_map *)malloc(sizeof(t_map));
-		check = ft_check_map(fd,argv[1]);
-		printf("check = %d\n", check);
-		if (check)
-			ft_parse_color(fd, argv[1], map);
+		if (ft_check_map(argv[1]))
+		  	ft_parse_color(argv[1], map);
 		else
-			ft_parse_values(fd, argv[1], map);
-		close(fd);
+			ft_parse_white(argv[1], map);
 	}
 	else
 		printf("not enough arguments! \n");
