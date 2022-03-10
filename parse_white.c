@@ -1,5 +1,6 @@
 #include "fdf.h"
 
+
 void	ft_parse_white(char *path, t_fdf *fdf)
 {
 	int		i;
@@ -15,11 +16,7 @@ void	ft_parse_white(char *path, t_fdf *fdf)
 
 	i = 0;
 	fd = open(path,O_RDONLY);
-	if (fd < 0)
-	{
-		printf("Error opening the file, %s\n", strerror(errno));
-		exit(FILE_ERROR);
-	}
+	check_fd(fd);
 	line = get_next_line(fd);
 	while (line && i < fdf->map.line_count)
 	{

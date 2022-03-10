@@ -10,7 +10,7 @@ int main(int argc, char **argv)
 		ft_parse(argv[1], fdf);
 	}
 	else
-		printf("not enough arguments! \n");
+		ft_printf("not enough arguments! \n");
 	return (0);
 }
 

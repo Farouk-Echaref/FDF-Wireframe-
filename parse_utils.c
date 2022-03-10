@@ -14,32 +14,13 @@ void	ft_free_double(char *str, char **str1, int c)
 	free(str1);
 }
 
-int	ft_check_map(char *path)
+void	check_fd(int fd)
 {
-	int		fd;
-	char	*line;
-	char 	*ptr;
-
-	fd = open(path,O_RDONLY);
 	if (fd < 0)
 	{
-		printf("Error opening the file, %s\n", strerror(errno));
-		exit(FILE_ERROR);
+			printf("Error opening the file, %s\n", strerror(errno));
+			exit(FILE_ERROR);
 	}
-	line = get_next_line(fd);
-	ptr = get_next_line(fd);
-	while(ptr)
-	{
-		free(ptr);
-		ptr = get_next_line(fd);
-	}
-	close(fd);
-	if (!ft_strchr(line, 'x'))
-	{
-		free(line);
-		return (1);
-	}
-	return (0);
 }
 
 void	ft_copy_value(int *ar, char **tmp, int c)

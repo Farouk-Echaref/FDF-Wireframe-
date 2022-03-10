@@ -8,6 +8,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdint.h>
+#include <stdarg.h>
 
 # define FILE_ERROR 1
 # define IN 1 
@@ -42,11 +43,21 @@ typedef struct s_fdf
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	t_img	*img;
+	t_img	img;
 	t_map	map;
-	t_rgb	*rgb;
+	t_rgb	rgb;
 } 	t_fdf;
 
+
+int		ft_printf(const char *, ...);
+int		ft_putchar(char c);
+int		ft_putnbr(int nb);
+int		ft_putstr(char *str);
+int		ft_print_unsigned(unsigned int n);
+int		ft_print_lower_hexa(long unsigned int nb);
+int		ft_print_upper_hexa(unsigned int nb);
+int		ft_print_addrs(long unsigned int nb);
+void	check_fd(int fd);
 void	ft_parse(char *path, t_fdf *fdf);
 void	ft_parse_white(char *path, t_fdf *fdf);
 char	**ft_split(char const *s, char c);

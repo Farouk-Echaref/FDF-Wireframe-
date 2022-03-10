@@ -54,11 +54,7 @@ void	ft_parse_color(char *path, t_fdf *fdf)
 		fdf->map.map_colors[i++] = (int *)malloc(fdf->map.word_count * sizeof(int));
 	i = 0;
 	fd = open(path,O_RDONLY);
-	if (fd < 0)
-	{
-			printf("Error opening the file, %s\n", strerror(errno));
-			exit(FILE_ERROR);
-	}
+	check_fd(fd);
 	line = get_next_line(fd);
 	while (line && i < fdf->map.line_count)
 	{
