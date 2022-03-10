@@ -94,7 +94,6 @@ int count_lines(char *path, int *a)
 	while(line)
 	{
 		count++;
-		printf("%s", line);
 		free(line);
 		line = get_next_line(fd);
 	}

@@ -43,11 +43,12 @@ typedef struct s_fdf
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	*img;
-	t_map	*map;
+	t_map	map;
 	t_rgb	*rgb;
 } 	t_fdf;
 
-void	ft_parse_white(char *path, t_map *map);
+void	ft_parse(char *path, t_fdf *fdf);
+void	ft_parse_white(char *path, t_fdf *fdf);
 char	**ft_split(char const *s, char c);
 char	*get_next_line(int fd);
 char	*ft_getline(char *str, int *i);
@@ -60,7 +61,7 @@ int		ft_check_map(char *path);
 int 	count_lines(char *path, int *a);
 void	ft_free_double(char *str, char **str1, int c);
 void	ft_copy_value(int *ar, char **tmp, int c);
-void	ft_parse_color(char *path, t_map *map);
+void	ft_parse_color(char *path, t_fdf *fdf);
 int		hex2int(char *hex); 
 void	ft_copy_hex(int *ar, char **tmp, int c);
 int		ft_strlen(char *str);

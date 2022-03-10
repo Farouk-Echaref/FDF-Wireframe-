@@ -36,7 +36,7 @@ void ft_copy_hex(int *ar, char **tmp, int c)
 	}
 }
 
-void	ft_parse_color(char *path, t_map *map)
+void	ft_parse_color(char *path, t_fdf *fdf)
 {
 	int		i;
 	int		fd;
@@ -44,14 +44,14 @@ void	ft_parse_color(char *path, t_map *map)
 	char	**tmp;
 
 	i = 0;
-	map -> line_count = count_lines(path, &map->word_count);
-	map->map_values = (int **)malloc(map->line_count * sizeof(int *));
-	while (i < map->line_count)
-		map->map_values[i++] = (int *)malloc(map->word_count * sizeof(int));
+	fdf->map.line_count = count_lines(path, &fdf->map.word_count);
+	fdf->map.map_values = (int **)malloc(fdf->map.line_count * sizeof(int *));
+	while (i < fdf->map.line_count)
+		fdf->map.map_values[i++] = (int *)malloc(fdf->map.word_count * sizeof(int));
 	i = 0;
-	map->map_colors = (int **)malloc(map->line_count * sizeof(int *));
-	while (i < map->line_count)
-		map->map_colors[i++] = (int *)malloc(map->word_count * sizeof(int));
+	fdf->map.map_colors = (int **)malloc(fdf->map.line_count * sizeof(int *));
+	while (i < fdf->map.line_count)
+		fdf->map.map_colors[i++] = (int *)malloc(fdf->map.word_count * sizeof(int));
 	i = 0;
 	fd = open(path,O_RDONLY);
 	if (fd < 0)
@@ -60,12 +60,12 @@ void	ft_parse_color(char *path, t_map *map)
 			exit(FILE_ERROR);
 	}
 	line = get_next_line(fd);
-	while (line && i < map->line_count)
+	while (line && i < fdf->map.line_count)
 	{
 		tmp = ft_split(line , ' ');
-		ft_copy_hex(map->map_colors[i], tmp, map->word_count);
-		ft_copy_value(map->map_values[i], tmp, map->word_count);
-		ft_free_double(line, tmp, map->word_count);
+		ft_copy_hex(fdf->map.map_colors[i], tmp, fdf->map.word_count);
+		ft_copy_value(fdf->map.map_values[i], tmp, fdf->map.word_count);
+		ft_free_double(line, tmp, fdf->map.word_count);
 		line = get_next_line(fd);
 	}
 	close(fd);
