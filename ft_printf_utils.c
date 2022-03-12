@@ -100,7 +100,7 @@ int ft_print_lower_hexa(long unsigned int nb)
 int ft_print_upper_hexa(unsigned int nb)
 {
     char    *hex;
-    int cpt;
+    int     cpt;
     
     cpt = 0;
     hex = "0123456789ABCDEF";
@@ -118,14 +118,9 @@ int ft_print_upper_hexa(unsigned int nb)
 
 int ft_print_addrs(long unsigned int nb)
 {
-    int cpt;
+    int     cpt;
     char    *hex;
 
-    cpt = 0;
-    cpt += ft_putstr("0x");
-    
-    int cpt;
-    
     cpt = 0;
     hex = "0123456789abcdef";
     if (nb >= 0 && nb < 16)
@@ -137,6 +132,5 @@ int ft_print_addrs(long unsigned int nb)
         cpt += ft_print_lower_hexa(nb >> 4);
         cpt += ft_print_lower_hexa(nb & 0xf);
     }
-    return (cpt);
     return (cpt);
 }

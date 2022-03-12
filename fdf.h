@@ -9,11 +9,17 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <stdarg.h>
+#include <math.h>
+#include <mlx.h>
+
 
 # define FILE_ERROR 1
 # define IN 1 
 # define OUT 0
 # define BUFFER_SIZE 500
+# define WINDOW_WIDTH 1000
+# define WINDOW_HEIGHT 1000
+# define MLX_ERROR	1
 
 typedef struct s_rgb
 {
@@ -44,11 +50,13 @@ typedef struct s_fdf
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	img;
-	t_map	map;
+	t_map	*map;
 	t_rgb	rgb;
 } 	t_fdf;
 
 
+int		init_win(t_fdf *fdf);
+int		render_map(t_fdf *fdf);
 int		ft_printf(const char *, ...);
 int		ft_putchar(char c);
 int		ft_putnbr(int nb);
@@ -123,8 +131,6 @@ char	*ft_strjoin(char *str1, char *str2);
 #define Purple 0x00800080
 
 # define MLX_ERROR	1
-#define WINDOW_WIDTH 1000
-#define WINDOW_HEIGHT 800
 
 #define RED_PIXEL 0xFF0000
 #define GREEN_PIXEL 0xFF00
