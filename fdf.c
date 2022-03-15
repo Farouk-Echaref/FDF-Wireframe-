@@ -20,6 +20,7 @@ int main(int argc, char **argv)
 {
 	t_fdf 	*fdf;
 	int x,y;
+	int i, j;
 
 	if (argc == 2)
 	{
@@ -38,18 +39,22 @@ int main(int argc, char **argv)
 		}
 		int index_j = 0;
 		int index_i ;
-		x = i + 200;
-		y = j + 200;
+		// x = i + 200;
+		// y = j + 200;
+		i = 0;
+		j = 0;
 		while (index_j < fdf->map.line_count)
 		{
 			index_i = 0;
+			x = i + 200;
+			y = j + 200;
 			while (index_i < fdf->map.word_count)
 			{
 				if (index_i != fdf->map.word_count - 1 )
-					draw_line(fdf, i + 200, j + 200, i + 200 + 30, j + 200, Red);
+					draw_line(fdf, x, j + 200, x + 30, j + 200, Red);
 				if (index_j != fdf->map.line_count - 1 )
-					draw_line(fdf, i + 200, j + 200, i + 200, j + 200 + 30, Red);
-				i += 30;
+					draw_line(fdf, x, j + 200, x, j + 200 + 30, Red);
+				x += 30;
 				index_i++;
 			}
 			i = 0;
