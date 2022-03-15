@@ -50,11 +50,15 @@ typedef struct s_fdf
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	img;
-	t_map	*map;
+	t_map	map;
 	t_rgb	rgb;
 } 	t_fdf;
 
-
+void	Xiaolin(t_fdf *fdf, double x1, double y1, double x2, double y2);
+int		draw_line(t_fdf *fdf, int beginX, int beginY, int endX, int endY, int color);
+void	swap(double *x, double *y);
+double	fpart(double x);
+double	rfpart(double x);
 int		init_win(t_fdf *fdf);
 int		render_map(t_fdf *fdf);
 int		ft_printf(const char *, ...);

@@ -18,7 +18,7 @@ void	check_fd(int fd)
 {
 	if (fd < 0)
 	{
-			printf("Error opening the file, %s\n", strerror(errno));
+			ft_printf("Error opening the file, %s\n", strerror(errno));
 			exit(FILE_ERROR);
 	}
 }

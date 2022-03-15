@@ -7,11 +7,7 @@ int	ft_check_map(char *path)
 	char 	*ptr;
 
 	fd = open(path,O_RDONLY);
-	if (fd < 0)
-	{
-		printf("Error opening the file, %s\n", strerror(errno));
-		exit(FILE_ERROR);
-	}
+	check_fd(fd);
 	line = get_next_line(fd);
 	ptr = get_next_line(fd);
 	while(ptr)
