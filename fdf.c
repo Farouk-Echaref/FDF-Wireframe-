@@ -5,17 +5,6 @@
 // 	return (red << 16 | green << 8 | blue);
 // }
 
-static void iso(int *x, int *y, int z)
-{
-    int previous_x;
-    int previous_y;
-
-    previous_x = *x;
-    previous_y = *y;
-    *x = (previous_x - previous_y) * cos(0.523599);
-    *y = -z + (previous_x + previous_y) * sin(0.523599);
-}
-
 int main(int argc, char **argv)
 {
 	t_fdf 	*fdf;
@@ -46,14 +35,14 @@ int main(int argc, char **argv)
 		while (index_j < fdf->map.line_count)
 		{
 			index_i = 0;
-			x = i + 200;
-			y = j + 200;
+			x = i + 550;
+			y = j + 150;
 			while (index_i < fdf->map.word_count)
 			{
 				if (index_i != fdf->map.word_count - 1 )
-					draw_line(fdf, x, j + 200, x + 30, j + 200, Red);
+					draw_line(fdf, x, y, x + 30, y, fdf->map.map_values[index_j][index_i],Red);
 				if (index_j != fdf->map.line_count - 1 )
-					draw_line(fdf, x, j + 200, x, j + 200 + 30, Red);
+					draw_line(fdf, x, y, x, y + 30, fdf->map.map_values[index_j][index_i],Red);
 				x += 30;
 				index_i++;
 			}
@@ -68,3 +57,16 @@ int main(int argc, char **argv)
 		ft_printf("not enough arguments! \n");
 	return (0);
 }
+
+
+// for (int i = 0; i < fdf->map.line_count; i++)
+// 		{
+// 			for (int j = 0; j < fdf->map.word_count ; j++)
+// 			{
+// 				if (fdf->map.map_values[i][j] < 9)
+// 					printf("%d  ",fdf->map.map_values[i][j]);
+// 				else
+// 					printf("%d ",fdf->map.map_values[i][j]);
+// 			}
+// 			printf("\n");
+// 		}

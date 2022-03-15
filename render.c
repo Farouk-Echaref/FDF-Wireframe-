@@ -1,15 +1,29 @@
 #include "fdf.h"
 
-int draw_line(t_fdf *fdf, int beginX, int beginY, int endX, int endY, int color)
+static void iso(int *x, int *y, int z)
+{
+    int previous_x;
+    int previous_y;
+
+    previous_x = *x;
+    previous_y = *y;
+    *x = (previous_x - previous_y) * cos(0.523599);
+    *y = -z + (previous_x + previous_y) * sin(0.523599);
+}
+
+int draw_line(t_fdf *fdf, int beginX, int beginY, int endX, int endY,int z, int color)
 {
 	double	deltaX;
 	double	deltaY;
 	int pixels;
 
-
+	iso(&beginX, &beginY, z);
+	iso(&endX, &endY, z);
 	//	delta = sqrt((endX - beginX)*(endX - beginX) + (endY - beginY)*(endY - beginY));
 
+	
 	//To get the direction of the line in 2D space, you can end - begin:
+	
 	deltaX = endX - beginX;
 	deltaY = endY - beginY;
 
