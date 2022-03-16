@@ -1,20 +1,49 @@
 #include "fdf.h"
 
-// int encode_rgb(uint8_t red, uint8_t green, uint8_t blue)
-// {
-// 	return (red << 16 | green << 8 | blue);
-// }
+int draw(t_fdf *fdf)
+{
+	int x,y;
+	int i, j;
+	int index_j = 0;
+	int index_i ;
+	// x = i + 200;
+	// y = j + 200;
+	i = 0;
+	j = 0;
+	while (index_j < fdf->line_count)
+	{
+		index_i = 0;
+		x = i + 550;
+		y = j + 150;
+		while (index_i < fdf->word_count)
+		{
+			//if (index_i != fdf->word_count - 1 )
+				draw_line(fdf, x, y, x + 30, y, fdf->map_values[index_j][index_i],Red);
+			//if (index_j != fdf->line_count - 1 )
+				draw_line(fdf, x, y, x, y + 30, fdf->map_values[index_j][index_i],Red);
+			x += 30;
+			index_i++;
+		}
+		i = 0;
+		j += 30;
+		index_j++;
+	}
+	//mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, fdf->img->img_ptr, 0, 0);
+	return (0);
+}
 
 int main(int argc, char **argv)
 {
 	t_fdf 	*fdf;
-	int x,y;
-	int i, j;
+	
 
 	if (argc == 2)
 	{
 		fdf = (t_fdf *)malloc(sizeof(t_fdf));
 		if (!fdf)
+			return (1);
+		fdf->img = (t_img *)malloc(sizeof(t_img));
+		if (!fdf->img)
 			return (1);
 		ft_parse(argv[1], fdf);
 		fdf->mlx_ptr = mlx_init();
@@ -26,31 +55,11 @@ int main(int argc, char **argv)
 			free(fdf);
 			return (MLX_ERROR);
 		}
-		int index_j = 0;
-		int index_i ;
-		// x = i + 200;
-		// y = j + 200;
-		i = 0;
-		j = 0;
-		while (index_j < fdf->map.line_count)
-		{
-			index_i = 0;
-			x = i + 550;
-			y = j + 150;
-			while (index_i < fdf->map.word_count)
-			{
-				if (index_i != fdf->map.word_count - 1 )
-					draw_line(fdf, x, y, x + 30, y, fdf->map.map_values[index_j][index_i],Red);
-				if (index_j != fdf->map.line_count - 1 )
-					draw_line(fdf, x, y, x, y + 30, fdf->map.map_values[index_j][index_i],Red);
-				x += 30;
-				index_i++;
-			}
-			i = 0;
-			j += 30;
-			index_j++;
-		}
-		//mlx_loop_hook(fdf->mlx_ptr, render, &fdf);
+		fdf->img->img_ptr = mlx_new_image(fdf->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
+		fdf->img->addr = mlx_get_data_addr(fdf->img->img_ptr, &fdf->img->bpp, &fdf->img->line_len, &fdf->img->endian);
+		draw(fdf);
+		mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, fdf->img->img_ptr, 0, 0);
+		//mlx_loop_hook(fdf->mlx_ptr, &draw, &fdf);
 		mlx_loop(fdf->mlx_ptr);
 	}
 	else
@@ -59,14 +68,14 @@ int main(int argc, char **argv)
 }
 
 
-// for (int i = 0; i < fdf->map.line_count; i++)
+// for (int i = 0; i < fdf->line_count; i++)
 // 		{
-// 			for (int j = 0; j < fdf->map.word_count ; j++)
+// 			for (int j = 0; j < fdf->word_count ; j++)
 // 			{
-// 				if (fdf->map.map_values[i][j] < 9)
-// 					printf("%d  ",fdf->map.map_values[i][j]);
+// 				if (fdf->map_values[i][j] < 9)
+// 					printf("%d  ",fdf->map_values[i][j]);
 // 				else
-// 					printf("%d ",fdf->map.map_values[i][j]);
+// 					printf("%d ",fdf->map_values[i][j]);
 // 			}
 // 			printf("\n");
 // 		}

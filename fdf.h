@@ -28,14 +28,6 @@ typedef struct s_rgb
 	uint8_t	blue;
 }	t_rgb;
 
-typedef struct s_map
-{
-	int	line_count;
-	int	word_count;
-	int	**map_values;
-	int	**map_colors;
-}	t_map;
-
 typedef struct s_img
 {
 	void *img_ptr;
@@ -47,10 +39,13 @@ typedef struct s_img
 
 typedef struct s_fdf
 {
+	int		line_count;
+	int		word_count;
+	int		**map_values;
+	int		**map_colors;
 	void	*mlx_ptr;
 	void	*win_ptr;
-	t_img	img;
-	t_map	map;
+	t_img	*img;
 	t_rgb	rgb;
 } 	t_fdf;
 
