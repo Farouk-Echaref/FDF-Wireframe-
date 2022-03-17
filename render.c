@@ -19,14 +19,14 @@ void img_pixel_put(t_fdf *fdf, int x, int y, int color)
 	*(int *)pixel = color; 
 }
 
-int draw_line(t_fdf *fdf, int beginX, int beginY, int endX, int endY,int z, int color)
+int draw_line(t_fdf *fdf, int beginX, int beginY, int endX, int endY,int z1, int z2, int color)
 {
 	double	deltaX;
 	double	deltaY;
 	int pixels;
 
-	iso(&beginX, &beginY, z);
-	iso(&endX, &endY, z);
+	iso(&beginX, &beginY, z1);
+	iso(&endX, &endY, z2);
 	//	delta = sqrt((endX - beginX)*(endX - beginX) + (endY - beginY)*(endY - beginY));
 
 	

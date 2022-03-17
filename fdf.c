@@ -2,26 +2,21 @@
 
 int draw(t_fdf *fdf)
 {
-	int x,y;
 	int i, j;
 	int index_j = 0;
 	int index_i ;
-	// x = i + 200;
-	// y = j + 200;
 	i = 0;
 	j = 0;
 	while (index_j < fdf->line_count)
 	{
 		index_i = 0;
-		x = i + 550;
-		y = j + 150;
 		while (index_i < fdf->word_count)
 		{
-			//if (index_i != fdf->word_count - 1 )
-				draw_line(fdf, x, y, x + 30, y, fdf->map_values[index_j][index_i],Red);
-			//if (index_j != fdf->line_count - 1 )
-				draw_line(fdf, x, y, x, y + 30, fdf->map_values[index_j][index_i],Red);
-			x += 30;
+			if (index_i != fdf->word_count - 1 )
+				draw_line(fdf,i + 550,j + 150,i + 550 + 30,j + 150, fdf->map_values[index_j][index_i], fdf->map_values[index_j][index_i + 1],Green);
+			if (index_j != fdf->line_count - 1 )
+				draw_line(fdf,i + 550,j + 150,i + 550,j + 150 + 30, fdf->map_values[index_j][index_i], fdf->map_values[index_j + 1][index_i],Green);
+			i += 30;
 			index_i++;
 		}
 		i = 0;

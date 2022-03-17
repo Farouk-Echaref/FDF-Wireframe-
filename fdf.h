@@ -51,7 +51,7 @@ typedef struct s_fdf
 
 
 void	Xiaolin(t_fdf *fdf, double x1, double y1, double x2, double y2);
-int		draw_line(t_fdf *fdf, int beginX, int beginY, int endX, int endY,int z, int color);
+int		draw_line(t_fdf *fdf, int beginX, int beginY, int endX, int endY,int z1, int z2, int color);
 void	swap(double *x, double *y);
 double	fpart(double x);
 double	rfpart(double x);
