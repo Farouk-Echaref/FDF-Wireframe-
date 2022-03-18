@@ -9,6 +9,9 @@ static void iso(int *x, int *y, int z)
     previous_y = *y;
     *x = (previous_x - previous_y) * cos(0.523599);
     *y = -z + (previous_x + previous_y) * sin(0.523599);
+
+	// new_x = (x + y) * cos(angle);
+	// new_y = (x - y) * sin(angle) - z;
 }
 
 void img_pixel_put(t_fdf *fdf, int x, int y, int color)

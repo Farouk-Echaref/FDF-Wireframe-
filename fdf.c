@@ -2,11 +2,14 @@
 
 int draw(t_fdf *fdf)
 {
-	int i, j;
-	int index_j = 0;
-	int index_i ;
+	int	i;
+	int	j;
+	int index_j;
+	int index_i;
+	
 	i = 0;
 	j = 0;
+	index_j = 0;
 	while (index_j < fdf->line_count)
 	{
 		index_i = 0;
@@ -54,6 +57,7 @@ int main(int argc, char **argv)
 		fdf->img->addr = mlx_get_data_addr(fdf->img->img_ptr, &fdf->img->bpp, &fdf->img->line_len, &fdf->img->endian);
 		draw(fdf);
 		mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, fdf->img->img_ptr, 0, 0);
+		// work on the line drawing algo , zoom , rotation for one frame , and then change other frames for other maps
 		//mlx_loop_hook(fdf->mlx_ptr, &draw, &fdf);
 		mlx_loop(fdf->mlx_ptr);
 	}

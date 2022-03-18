@@ -26,7 +26,15 @@ typedef struct s_rgb
 	uint8_t	red;
 	uint8_t	green;
 	uint8_t	blue;
+	//uin8_t
 }	t_rgb;
+
+typedef struct s_point
+{
+	double x;
+	double y;
+	double z;
+}	t_point;
 
 typedef struct s_img
 {
