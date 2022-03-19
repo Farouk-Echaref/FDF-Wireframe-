@@ -57,8 +57,8 @@ typedef struct s_fdf
 	t_rgb	rgb;
 } 	t_fdf;
 
-
-void	Xiaolin(t_fdf *fdf, double x1, double y1, double x2, double y2);
+int encode_rgb(int apha, int r, int g, int b);
+void	Xiaolin(t_fdf *fdf, double x1, double y1, double x2, double y2, double z1, double z2);
 int		draw_line(t_fdf *fdf, int beginX, int beginY, int endX, int endY,int z1, int z2, int color);
 void	swap(double *x, double *y);
 double	fpart(double x);

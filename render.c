@@ -1,5 +1,12 @@
 #include "fdf.h"
 
+// int encode_rgb(int b, int g, int r, int a)
+// {
+// 	//return (b | g >> 8 | r >> 16 | a >> 24);
+//     //return (a >> 24) | ((r & 255) >> 16) | ((g & 255) >> 8) | (b & 255);
+//     return (a << 24 | r << 16 | g << 8 )
+// }
+
 static void iso(int *x, int *y, int z)
 {
     int previous_x;
@@ -9,9 +16,6 @@ static void iso(int *x, int *y, int z)
     previous_y = *y;
     *x = (previous_x - previous_y) * cos(0.523599);
     *y = -z + (previous_x + previous_y) * sin(0.523599);
-
-	// new_x = (x + y) * cos(angle);
-	// new_y = (x - y) * sin(angle) - z;
 }
 
 void img_pixel_put(t_fdf *fdf, int x, int y, int color)
