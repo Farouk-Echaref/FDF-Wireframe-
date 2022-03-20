@@ -26,7 +26,6 @@ typedef struct s_rgb
 	uint8_t	red;
 	uint8_t	green;
 	uint8_t	blue;
-	//uin8_t
 }	t_rgb;
 
 typedef struct s_point
@@ -57,7 +56,9 @@ typedef struct s_fdf
 	t_rgb	rgb;
 } 	t_fdf;
 
-int encode_rgb(int apha, int r, int g, int b);
+int		encode_rgb(int apha, int r, int g, int b);
+int		word_count1(char *s, char c1, char c2);
+int		esc_press(int key, t_fdf *fdf);
 void	Xiaolin(t_fdf *fdf, double x1, double y1, double x2, double y2, double z1, double z2);
 int		draw_line(t_fdf *fdf, int beginX, int beginY, int endX, int endY,int z1, int z2, int color);
 void	swap(double *x, double *y);
@@ -76,7 +77,7 @@ int		ft_print_addrs(long unsigned int nb);
 void	check_fd(int fd);
 void	ft_parse(char *path, t_fdf *fdf);
 void	ft_parse_white(char *path, t_fdf *fdf);
-char	**ft_split(char const *s, char c);
+char	**ft_split(char const *s, char c1, char c2);
 char	*get_next_line(int fd);
 char	*ft_getline(char *str, int *i);
 char	*ft_getrest(char *reminder, int *i);

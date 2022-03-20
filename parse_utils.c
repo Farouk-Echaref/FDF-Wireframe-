@@ -36,7 +36,7 @@ void	ft_copy_value(int *ar, char **tmp, int c)
 	}
 }
 
-int	word_count(char	*s, char c)
+int	word_count1(char *s, char c1, char c2)
 {
 	int	state;
 	int	count;
@@ -45,7 +45,7 @@ int	word_count(char	*s, char c)
 	state = OUT;
 	while (*s)
 	{
-		if (*s == c)
+		if (*s == c1 || *s == c2)
 			state = OUT;
 		else if (state == OUT)
 		{
@@ -67,7 +67,7 @@ int count_lines(char *path, int *a)
 	fd = open(path,O_RDONLY);
 	check_fd(fd);
 	line = get_next_line(fd);
-	*a = word_count(line, ' ');
+	*a = word_count1(line, ' ', '\n');
 	while(line)
 	{
 		count++;

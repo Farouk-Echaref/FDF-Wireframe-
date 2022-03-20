@@ -16,17 +16,16 @@ int draw(t_fdf *fdf)
 		while (index_i < fdf->word_count)
 		{
 			if (index_i != fdf->word_count - 1 )
-				draw_line(fdf,i + 550,j + 150,i + 550 + 30,j + 150, fdf->map_values[index_j][index_i], fdf->map_values[index_j][index_i + 1], GREEN_PIXEL);
+				draw_line(fdf,i + 550,j + 150,i + 550 + 3,j + 150, fdf->map_values[index_j][index_i], fdf->map_values[index_j][index_i + 1], GREEN_PIXEL);
 			if (index_j != fdf->line_count - 1 )
-				draw_line(fdf,i + 550,j + 150,i + 550,j + 150 + 30, fdf->map_values[index_j][index_i], fdf->map_values[index_j + 1][index_i], GREEN_PIXEL);
-			i += 30;
+				draw_line(fdf,i + 550,j + 150,i + 550,j + 150 + 3, fdf->map_values[index_j][index_i], fdf->map_values[index_j + 1][index_i], GREEN_PIXEL);
+			i += 3;
 			index_i++;
 		}
 		i = 0;
-		j += 30;
+		j += 3;
 		index_j++;
 	}
-	//mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, fdf->img->img_ptr, 0, 0);
 	return (0);
 }
 
@@ -48,7 +47,8 @@ int main(int argc, char **argv)
 		draw(fdf);
 		mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, fdf->img->img_ptr, 0, 0);
 		// work on the line drawing algo , zoom , rotation for one frame , and then change other frames for other maps
-		//mlx_loop_hook(fdf->mlx_ptr, &draw, &fdf);
+		//mlx_loop_hook(fdf->mlx_ptr, esc_press, &fdf);
+		mlx_hook(fdf->win_ptr, ON_KEYDOWN, 0, esc_press, &fdf);
 		mlx_loop(fdf->mlx_ptr);
 	}
 	else
