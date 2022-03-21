@@ -1,19 +1,5 @@
 #include "fdf.h"
 
-void	ft_free_double(char *str, char **str1, int c)
-{
-	int i;
-
-	i = 0;
-	free(str);
-	while(i < c)
-	{
-		free(str1[i]);
-		i++;
-	}
-	free(str1);
-}
-
 void	check_fd(int fd)
 {
 	if (fd < 0)
@@ -23,20 +9,38 @@ void	check_fd(int fd)
 	}
 }
 
-void	ft_copy_value(int *ar, char **tmp, int c)
+char	*ft_strchr2(char *s, int c)
 {
-	int	i;
+	char	ch;
 
-	i = 0;
-	while (i < c)
+	ch = (char) c;
+	if (ch == 0)
+		return ((char *)s + ft_strlen(s));
+	while (1)
 	{
-		ar[i] = ft_atoi(*tmp);
-		tmp++;
-		i++;
+		if (*s == ch)
+			return ((char *)s);
+		if (*s == '\0')
+			break ;
+		++s;
 	}
+	return (NULL);
 }
 
-int	word_count1(char *s, char c1, char c2)
+void	ft_free_double_array(char **str, int c)
+{
+	int i;
+
+	i = 0;
+	while(i < c)
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+}
+
+int	word_count(char *s, char c)
 {
 	int	state;
 	int	count;
@@ -45,7 +49,7 @@ int	word_count1(char *s, char c1, char c2)
 	state = OUT;
 	while (*s)
 	{
-		if (*s == c1 || *s == c2)
+		if (*s == c)
 			state = OUT;
 		else if (state == OUT)
 		{
@@ -67,7 +71,7 @@ int count_lines(char *path, int *a)
 	fd = open(path,O_RDONLY);
 	check_fd(fd);
 	line = get_next_line(fd);
-	*a = word_count1(line, ' ', '\n');
+	*a = word_count(line, ' ');
 	while(line)
 	{
 		count++;
