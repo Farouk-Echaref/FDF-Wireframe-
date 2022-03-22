@@ -41,7 +41,7 @@ void copy_data(int *value_arr, int *color_arr, char *line, t_fdf *fdf, int c)
 		value_arr[i] = ft_atoi(tmp[i]);
 		check = ft_strchr2(tmp[i], 'x');
 		if (check == NULL)
-			color_arr[i] = White;
+			color_arr[i] = GREEN_PIXEL;
 		else
 			color_arr[i] = hex2int(tmp[i]);
 		i++;

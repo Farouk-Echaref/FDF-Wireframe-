@@ -16,23 +16,17 @@
 # define FILE_ERROR 1
 # define IN 1 
 # define OUT 0
-# define BUFFER_SIZE 500
-# define WINDOW_WIDTH 1000
-# define WINDOW_HEIGHT 1000
+# define BUFFER_SIZE 1000
+# define WINDOW_WIDTH 1920
+# define WINDOW_HEIGHT 1080
 # define MLX_ERROR	1
-
-typedef struct s_rgb
-{
-	uint8_t	red;
-	uint8_t	green;
-	uint8_t	blue;
-}	t_rgb;
 
 typedef struct s_point
 {
-	double x;
-	double y;
-	double z;
+	int	x;
+	int	y;
+	int	z;
+	int	color;
 }	t_point;
 
 typedef struct s_img
@@ -48,17 +42,26 @@ typedef struct s_fdf
 {
 	int		line_count;
 	int		word_count;
+	int		iso;
+	int		elevation;
+	int		zoom;
+	int		posx;
+	int		posy;
 	int		**map_values;
 	int		**map_colors;
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	*img;
-	t_rgb	rgb;
 } 	t_fdf;
 
+void	iso(int *x, int *y, int z);
+void	zoom(t_fdf *fdf, int *x, int *y, int z, int lc, int wc);
+void	shifting(t_fdf *fdf, int *x, int *y);
+void	plot_point(t_point *p, int x, int y, int color);
+int		draw(t_fdf *fdf);
 int		encode_rgb(int apha, int r, int g, int b);
 int		esc_press(int key, t_fdf *fdf);
-int		draw_line(t_fdf *fdf, int beginX, int beginY, int endX, int endY,int z1, int z2, int color);
+int		draw_line(t_fdf *fdf, int l_index, int w_index, int beginX, int beginY, int endX, int endY,int z1, int z2, int color);
 int		init_win(t_fdf *fdf);
 int		render_map(t_fdf *fdf);
 int		ft_printf(const char *, ...);

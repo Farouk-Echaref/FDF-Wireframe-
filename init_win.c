@@ -1,7 +1,35 @@
 #include "fdf.h"
 
+void	resize_map(t_fdf *fdf)
+{
+	if (fdf->word_count < 50 && fdf->line_count < 50)
+	{
+		fdf->zoom = 30;
+		fdf->elevation = 3;
+	}
+	else if (fdf->word_count < 100 && fdf->line_count < 100)
+	{
+		fdf->zoom = 15;
+		fdf->elevation = 1;
+	}
+	else if (fdf->word_count < 400 && fdf->line_count < 400)
+	{
+		fdf->zoom = 6;
+		fdf->elevation = 1;
+	}
+	else
+	{
+		fdf->zoom = 2;
+		fdf->elevation = 1;
+	}
+}
+
 int	init_win(t_fdf *fdf)
 {
+	fdf->iso = 1;
+	resize_map(fdf);
+	fdf->posx = (WINDOW_WIDTH) / 2;
+	fdf->posy = WINDOW_HEIGHT / 2 - (fdf->word_count * fdf->zoom) / 2;
 	fdf->mlx_ptr = mlx_init();
 	if (!fdf->mlx_ptr)
 		return (MLX_ERROR);
