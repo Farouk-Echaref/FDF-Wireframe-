@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fech-cha <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/22 18:09:53 by fech-cha          #+#    #+#             */
+/*   Updated: 2022/03/22 21:40:43 by fech-cha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 int hex2int(char *hex) 
 {
-    int	val;
+	int	val;
 	int	byte;
 	int	len;
 	int	index;
@@ -13,19 +25,19 @@ int hex2int(char *hex)
 	while(index < len && hex[index] != 'x')
 		index++;
 	index++;
-    while (hex[index])
+	while (hex[index])
 	{
 		byte = hex[index]; 
-        if (byte >= '0' && byte <= '9')
+		if (byte >= '0' && byte <= '9')
 			byte = byte - '0';
-        else if (byte >= 'a' && byte <='f')
+		else if (byte >= 'a' && byte <='f')
 			byte = byte - 'a' + 10;
-        else if (byte >= 'A' && byte <='F')
+		else if (byte >= 'A' && byte <='F')
 			byte = byte - 'A' + 10;
-        val = (val << 4) | (byte);
+		val = (val << 4) | (byte);
 		index++;
-    }
-    return (val);
+	}
+	return (val);
 }
 
 void copy_data(int *value_arr, int *color_arr, char *line, t_fdf *fdf, int c)
@@ -41,7 +53,7 @@ void copy_data(int *value_arr, int *color_arr, char *line, t_fdf *fdf, int c)
 		value_arr[i] = ft_atoi(tmp[i]);
 		check = ft_strchr2(tmp[i], 'x');
 		if (check == NULL)
-			color_arr[i] = GREEN_PIXEL;
+			color_arr[i] = White;
 		else
 			color_arr[i] = hex2int(tmp[i]);
 		i++;
@@ -54,11 +66,11 @@ int ft_parse(char *path, t_fdf *fdf)
 	int		i;
 	int		fd;
 	char	*line;
-	
+
 	i = 0;
 	fdf->line_count = count_lines(path, &fdf->word_count);
 	if (fdf->line_count == -1)
- 		return (-1);
+		return (-1);
 	fdf->map_values = (int **)malloc(sizeof(int *) * (fdf->line_count + 1));
 	fdf->map_colors = (int **)malloc(sizeof(int *) * (fdf->line_count + 1));
 	fd = open(path, O_RDONLY);

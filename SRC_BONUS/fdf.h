@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fech-cha <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/22 18:09:17 by fech-cha          #+#    #+#             */
+/*   Updated: 2022/03/22 18:09:21 by fech-cha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FDF_H
 # define FDF_H
 
@@ -23,9 +35,9 @@
 
 typedef struct s_point
 {
-	int	x;
-	int	y;
-	int	z;
+	double	x;
+	double	y;
+	double	z;
 	int	color;
 }	t_point;
 
@@ -43,8 +55,8 @@ typedef struct s_fdf
 	int		line_count;
 	int		word_count;
 	int		iso;
-	int		elevation;
-	int		zoom;
+	double		elevation;
+	double		zoom;
 	int		posx;
 	int		posy;
 	int		**map_values;
@@ -54,14 +66,20 @@ typedef struct s_fdf
 	t_img	*img;
 } 	t_fdf;
 
-void	iso(int *x, int *y, int z);
-void	zoom(t_fdf *fdf, int *x, int *y, int z, int lc, int wc);
-void	shifting(t_fdf *fdf, int *x, int *y);
-void	plot_point(t_point *p, int x, int y, int color);
+int		redraw(t_fdf *fdf);
+void	clear_image(t_fdf *fdf);
+void	clear_data(t_fdf *fdf);
+int		key_option(int keynum, t_fdf *fdf);
+int		close_fdf(t_fdf *fdf);
+void	iso(double *x, double *y, double z);
+void	img_pixel_put(t_fdf *fdf, int x, int y, int color);
+void	zoom(t_fdf *fdf, t_point *p1, t_point *p2);
+void	shifting(t_fdf *fdf, t_point *p1 , t_point *p2);
+void	plot_point(t_point *p, double x, double y, int color);
 int		draw(t_fdf *fdf);
 int		encode_rgb(int apha, int r, int g, int b);
 int		esc_press(int key, t_fdf *fdf);
-int		draw_line(t_fdf *fdf, int l_index, int w_index, int beginX, int beginY, int endX, int endY,int z1, int z2, int color);
+int		draw_line(t_fdf *fdf, t_point p1, t_point p2);
 int		init_win(t_fdf *fdf);
 int		render_map(t_fdf *fdf);
 int		ft_printf(const char *, ...);
@@ -109,11 +127,23 @@ char	*ft_strjoin(char *str1, char *str2);
 // Minilibx doesn’t support X11 mask : the docs says
 #define X_MASK_DEFAULT NoEventMask
 
+
 #define ESC_KEY 53
-#define ARROWLEFT_KEY 123
-#define ARROWRIGHT_KEY 124
-#define ARROWDOWN_KEY 125
-#define ARROWUP_KEY 126
+#define ZOOM_IN 6
+#define ZOOM_OUT 7
+#define ISO 34
+#define	PAR 35
+#define ARROWLEFT 123
+#define ARROWRIGHT 124
+#define ARROWDOWN 125
+#define ARROWUP 126
+#define ROTATE_LEFT 0
+#define ROTATE_RIGHT 2
+#define ROTATE_UP 13
+#define ROTATE_DOWN 1
+#define ELEVATE_UP 14
+#define ELEVATE_DOWN 15
+
 
 #define S_KEY 49
 #define White 0x00FFFFFF
