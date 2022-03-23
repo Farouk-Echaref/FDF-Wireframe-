@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../Inlcude/fdf_bonus.h"
 
 void	resize_map(t_fdf *fdf)
 {
@@ -39,6 +39,8 @@ void	resize_map(t_fdf *fdf)
 int	init_win(t_fdf *fdf)
 {
 	fdf->iso = 1;
+	fdf->theta_x = 0.523599;
+	fdf->theta_y = 0.523599;
 	resize_map(fdf);
 	fdf->posx = (WINDOW_WIDTH) / 2;
 	fdf->posy = WINDOW_HEIGHT / 2 - (fdf->word_count * fdf->zoom / 2) ;

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../Inlcude/fdf.h"
 
 char	*ft_read_all(char *str, int fd)
 {

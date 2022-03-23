@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../Inlcude/fdf_bonus.h"
 
 int	close_fdf(t_fdf *fdf)
 {
@@ -29,6 +29,7 @@ void	clear_data(t_fdf *fdf)
 
 int	key_option(int keynum, t_fdf *fdf)
 {
+
 	if (keynum == ZOOM_IN)
 		fdf->zoom += 2;
 	else if (keynum == ZOOM_OUT)
@@ -37,6 +38,10 @@ int	key_option(int keynum, t_fdf *fdf)
 		fdf->elevation += 0.3;
 	else if (keynum == ELEVATE_DOWN)
 		fdf->elevation -= 0.3;
+	else if (keynum == 34)
+		fdf->iso = 1;
+	else if (keynum == 35)
+		fdf->iso = 0;
 	else if(keynum == ARROWUP)
 		fdf->posy -= 20;
 	else if(keynum == ARROWDOWN)
@@ -45,6 +50,14 @@ int	key_option(int keynum, t_fdf *fdf)
 		fdf->posx += 20;
 	else if(keynum == ARROWLEFT)
 		fdf->posx -= 20;
+	else if (keynum == ROTATE_UP)
+		fdf->theta_x += 0.1;
+	else if (keynum == ROTATE_DOWN)
+		fdf->theta_x -= 0.1;
+	else if (keynum == ROTATE_LEFT)
+		fdf->theta_y += 0.1;
+	else if (keynum == ROTATE_RIGHT)
+		fdf->theta_y -= 0.1;
 	else if (keynum == ESC_KEY)
 		clear_data(fdf);
 	redraw(fdf);

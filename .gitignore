@@ -1,0 +1,7 @@
+a.out
+.DS*
+*/.DS*
+fdf
+*.o
+*.a
+*.dSYM

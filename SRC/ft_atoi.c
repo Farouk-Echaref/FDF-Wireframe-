@@ -1,4 +1,4 @@
-#include "fdf.h"
+#include "../Inlcude/fdf.h"
 
 int	ft_atoi(const char *str)
 {

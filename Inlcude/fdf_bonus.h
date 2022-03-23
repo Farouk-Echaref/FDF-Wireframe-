@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: fech-cha <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/22 18:09:17 by fech-cha          #+#    #+#             */
-/*   Updated: 2022/03/22 18:09:21 by fech-cha         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef FDF_H
 # define FDF_H
 
@@ -55,6 +43,8 @@ typedef struct s_fdf
 	int		line_count;
 	int		word_count;
 	int		iso;
+	double	theta_x;
+	double	theta_y;
 	double		elevation;
 	double		zoom;
 	int		posx;
@@ -71,7 +61,7 @@ void	clear_image(t_fdf *fdf);
 void	clear_data(t_fdf *fdf);
 int		key_option(int keynum, t_fdf *fdf);
 int		close_fdf(t_fdf *fdf);
-void	iso(double *x, double *y, double z);
+void	iso(t_fdf *fdf, double *x, double *y, double z);
 void	img_pixel_put(t_fdf *fdf, int x, int y, int color);
 void	zoom(t_fdf *fdf, t_point *p1, t_point *p2);
 void	shifting(t_fdf *fdf, t_point *p1 , t_point *p2);
@@ -126,7 +116,6 @@ char	*ft_strjoin(char *str1, char *str2);
 #define NoEventMask 0L
 // Minilibx doesn’t support X11 mask : the docs says
 #define X_MASK_DEFAULT NoEventMask
-
 
 #define ESC_KEY 53
 #define ZOOM_IN 6

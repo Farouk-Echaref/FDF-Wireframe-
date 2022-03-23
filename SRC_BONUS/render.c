@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../Inlcude/fdf_bonus.h"
 
 int draw_line(t_fdf *fdf, t_point p1, t_point p2)
 {
@@ -23,8 +23,8 @@ int draw_line(t_fdf *fdf, t_point p1, t_point p2)
 	zoom(fdf, &p1, &p2);
 	if (fdf->iso == 1)
 	{
-		iso(&p1.x, &p1.y, p1.z);
-		iso(&p2.x, &p2.y, p2.z);
+		iso(fdf, &p1.x, &p1.y, p1.z);
+		iso(fdf, &p2.x, &p2.y, p2.z);
 	}
 	shifting(fdf, &p1, &p2);
 	deltaX = p2.x - p1.x;
