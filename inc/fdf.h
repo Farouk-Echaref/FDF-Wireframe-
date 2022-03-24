@@ -5,25 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fech-cha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/24 04:52:36 by fech-cha          #+#    #+#             */
-/*   Updated: 2022/03/24 04:52:38 by fech-cha         ###   ########.fr       */
+/*   Created: 2022/03/24 15:43:16 by fech-cha          #+#    #+#             */
+/*   Updated: 2022/03/24 15:43:18 by fech-cha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <errno.h>
-#include <string.h>
-#include <stdio.h>
-#include <stdint.h>
-#include <stdarg.h>
-#include <math.h>
-#include <mlx.h>
-
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <errno.h>
+# include <string.h>
+# include <stdio.h>
+# include <stdint.h>
+# include <stdarg.h>
+# include <math.h>
+# include <mlx.h>
 
 # define FILE_ERROR 1
 # define IN 1 
@@ -37,7 +36,7 @@
 # define ZOOM_IN 6
 # define ZOOM_OUT 7
 # define ISO 34
-# define	PAR 35
+# define PAR 35
 # define ARROWLEFT 123
 # define ARROWRIGHT 124
 # define ARROWDOWN 125
@@ -48,12 +47,11 @@
 # define ROTATE_DOWN 1
 # define ELEVATE_UP 14
 # define ELEVATE_DOWN 15
-# define White 0x00FFFFFF
+# define WHITE 0x00FFFFFF
 # define MLX_ERROR	1
 # define RED_PIXEL 0xFF0000
 # define GREEN_PIXEL 0xFF00
 # define WHITE_PIXEL 0xFFFFFF
-
 
 typedef struct s_draw
 {
@@ -69,16 +67,16 @@ typedef struct s_point
 	double	x;
 	double	y;
 	double	z;
-	int	color;
+	int		color;
 }	t_point;
 
 typedef struct s_img
 {
-	void *img_ptr;
-	char *addr;
-	int bpp;
-	int line_len;
-	int endian;
+	void	*img_ptr;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
 }	t_img;
 
 typedef struct s_fdf
@@ -88,8 +86,8 @@ typedef struct s_fdf
 	int		iso;
 	double	theta_x;
 	double	theta_y;
-	double		elevation;
-	double		zoom;
+	double	elevation;
+	double	zoom;
 	int		posx;
 	int		posy;
 	int		**map_values;
@@ -97,7 +95,7 @@ typedef struct s_fdf
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	*img;
-} 	t_fdf;
+}	t_fdf;
 
 void	menu(void);
 int		redraw(t_fdf *fdf);
@@ -109,7 +107,7 @@ int		close_fdf(t_fdf *fdf);
 void	iso(t_fdf *fdf, double *x, double *y, double z);
 void	img_pixel_put(t_fdf *fdf, int x, int y, int color);
 void	zoom(t_fdf *fdf, t_point *p1, t_point *p2);
-void	shifting(t_fdf *fdf, t_point *p1 , t_point *p2);
+void	shifting(t_fdf *fdf, t_point *p1, t_point *p2);
 void	plot_point(t_point *p, double x, double y, int color);
 int		draw(t_fdf *fdf);
 int		encode_rgb(int apha, int r, int g, int b);
@@ -117,7 +115,7 @@ int		esc_press(int key, t_fdf *fdf);
 int		draw_line(t_fdf *fdf, t_point p1, t_point p2);
 int		init_win(t_fdf *fdf);
 int		render_map(t_fdf *fdf);
-int		ft_printf(const char *, ...);
+int		ft_printf(const char *str, ...);
 int		ft_putchar(char c);
 int		ft_putnbr(int nb);
 int		ft_putstr(char *str);
@@ -136,9 +134,9 @@ int		word_count(char	*s, char c);
 int		ft_atoi(const char *str);
 int		ft_strchr(char *s, int c);
 char	*ft_strchr2(char *s, int c);
-int 	count_lines(char *path, int *a);
+int		count_lines(char *path, int *a);
 void	ft_free_double_array(char **str, int c);
-int		hex2int(char *hex); 
+int		hex2int(char *hex);
 int		ft_strlen(char *str);
 size_t	ft_strlcpy(char *dst, char *src, size_t size);
 char	*ft_free(char *str1, char *str2);

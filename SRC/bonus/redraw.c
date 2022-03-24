@@ -26,7 +26,7 @@ void	clear_image(t_fdf *fdf)
 		{
 				pixel = fdf->img->addr + ((fdf->img->line_len * j)
 					+ i * (fdf->img->bpp / 8));
-				*(int *)pixel = Black;
+				*(int *)pixel = BLACK;
 				i++;
 		}
 		j++;
