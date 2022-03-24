@@ -6,7 +6,7 @@
 /*   By: fech-cha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:09:42 by fech-cha          #+#    #+#             */
-/*   Updated: 2022/03/22 21:40:29 by fech-cha         ###   ########.fr       */
+/*   Updated: 2022/03/24 03:41:56 by fech-cha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ char	*ft_strchr2(char *s, int c)
 
 void	ft_free_double_array(char **str, int c)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(i < c)
+	while (i < c)
 	{
 		free(str[i]);
 		i++;
@@ -73,18 +73,18 @@ int	word_count(char *s, char c)
 	return (count);
 }
 
-int count_lines(char *path, int *a)
+int	count_lines(char *path, int *a)
 {
 	int		count;
 	char	*line;
 	int		fd;
 
 	count = 0;
-	fd = open(path,O_RDONLY);
+	fd = open(path, O_RDONLY);
 	check_fd(fd);
 	line = get_next_line(fd);
 	*a = word_count(line, ' ');
-	while(line)
+	while (line)
 	{
 		count++;
 		free(line);

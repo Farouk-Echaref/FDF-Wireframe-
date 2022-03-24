@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf_bonus.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fech-cha <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/24 04:52:43 by fech-cha          #+#    #+#             */
+/*   Updated: 2022/03/24 04:52:45 by fech-cha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FDF_H
 # define FDF_H
 
@@ -20,6 +32,37 @@
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
 # define MLX_ERROR	1
+# define ON_DESTROY 17
+# define ESC_KEY 53
+# define ZOOM_IN 6
+# define ZOOM_OUT 7
+# define ISO 34
+# define	PAR 35
+# define ARROWLEFT 123
+# define ARROWRIGHT 124
+# define ARROWDOWN 125
+# define ARROWUP 126
+# define ROTATE_LEFT 0
+# define ROTATE_RIGHT 2
+# define ROTATE_UP 13
+# define ROTATE_DOWN 1
+# define ELEVATE_UP 14
+# define ELEVATE_DOWN 15
+# define White 0x00FFFFFF
+# define MLX_ERROR	1
+# define RED_PIXEL 0xFF0000
+# define GREEN_PIXEL 0xFF00
+# define WHITE_PIXEL 0xFFFFFF
+
+
+typedef struct s_draw
+{
+	double	deltax;
+	double	pixelx;
+	double	pixely;
+	double	deltay;
+	int		pixels;
+}	t_draw;
 
 typedef struct s_point
 {
@@ -99,64 +142,5 @@ int		ft_strlen(char *str);
 size_t	ft_strlcpy(char *dst, char *src, size_t size);
 char	*ft_free(char *str1, char *str2);
 char	*ft_strjoin(char *str1, char *str2);
-
-// X11 Events
-// these are only the supported events by Minilibx
-// and their callback function prototypes
-#define ON_KEYDOWN 2   // int (*f)(int keycode, void *param)
-#define ON_KEYUP 3       // int (*f)(int keycode, void *param)
-#define ON_MOUSEDOWN 4 // int (*f)(int button, int x, int y, void *param)
-#define ON_MOUSEUP 5   // int (*f)(int button, int x, int y, void *param)
-#define ON_MOUSEMOVE 6 // int (*f)(int x, int y, void *param)
-#define ON_EXPOSE 12   // int (*f)(void *param)
-#define ON_DESTROY 17  // int (*f)(void *param)
-
-#define ON_SCROLL_UP 4
-#define ON_SCROLL_DOWN 5
-// X11 Masks
-#define NoEventMask 0L
-// Minilibx doesn’t support X11 mask : the docs says
-#define X_MASK_DEFAULT NoEventMask
-
-#define ESC_KEY 53
-#define ZOOM_IN 6
-#define ZOOM_OUT 7
-#define ISO 34
-#define	PAR 35
-#define ARROWLEFT 123
-#define ARROWRIGHT 124
-#define ARROWDOWN 125
-#define ARROWUP 126
-#define ROTATE_LEFT 0
-#define ROTATE_RIGHT 2
-#define ROTATE_UP 13
-#define ROTATE_DOWN 1
-#define ELEVATE_UP 14
-#define ELEVATE_DOWN 15
-
-
-#define S_KEY 49
-#define White 0x00FFFFFF
-#define Silver 0x00C0C0C0
-#define Gray 0x00808080
-#define Black 0x00000000
-#define Red 0x00FF0000
-#define Maroon 0x00800000
-#define Yellow 0x00FFFF00
-#define Olive 0x00808000
-#define Lime 0x0000FF00
-#define Green 0x00008000
-#define Aqua 0x0000FFFF
-#define Teal 0x00008080
-#define Blue 0x000000FF
-#define Navy 0x00000080
-#define Fuchsia 0x00FF00FF
-#define Purple 0x00800080
-
-# define MLX_ERROR	1
-
-#define RED_PIXEL 0xFF0000
-#define GREEN_PIXEL 0xFF00
-#define WHITE_PIXEL 0xFFFFFF
 
 #endif

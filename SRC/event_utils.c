@@ -6,11 +6,17 @@
 /*   By: fech-cha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:08:56 by fech-cha          #+#    #+#             */
-/*   Updated: 2022/03/22 18:09:02 by fech-cha         ###   ########.fr       */
+/*   Updated: 2022/03/24 04:31:03 by fech-cha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+int	close_fdf(t_fdf *fdf)
+{
+	clear_data(fdf);
+	return (0);
+}
 
 void	clear_data(t_fdf *fdf)
 {
@@ -21,7 +27,7 @@ void	clear_data(t_fdf *fdf)
 	mlx_destroy_window(fdf->mlx_ptr, fdf->win_ptr);
 	while (i < fdf->line_count)
 	{
- 		free(fdf->map_colors[i]);
+		free(fdf->map_colors[i]);
 		free(fdf->map_values[i]);
 		i++;
 	}
@@ -38,24 +44,3 @@ int	esc_key(int keynum, t_fdf *fdf)
 		clear_data(fdf);
 	return (0);
 }
-
-int	close_fdf(t_fdf *fdf)
-{
-	clear_data(fdf);
-	return (0);
-}
-
-// int esc_press(int key, t_fdf *fdf)
-// {
-// 	if (key == ESC_KEY)
-// 	{
-// 		mlx_destroy_image(fdf->mlx_ptr, fdf->img);
-// 		mlx_destroy_window(fdf->mlx_ptr, fdf->win_ptr);
-// 		ft_free_arr(fdf->fdf_colors, fdf->line_count);
-// 		ft_free_arr(fdf->fdf_values, fdf->line_count);
-// 		free(fdf->img);
-// 		free(fdf);
-// 		exit(1);
-// 	}
-// 	return (0);
-// }

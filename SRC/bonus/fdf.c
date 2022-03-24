@@ -6,21 +6,23 @@
 /*   By: fech-cha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 18:09:11 by fech-cha          #+#    #+#             */
-/*   Updated: 2022/03/24 03:01:59 by fech-cha         ###   ########.fr       */
+/*   Updated: 2022/03/24 04:26:24 by fech-cha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_bonus.h"
 
-int	allocate(t_fdf *fdf)
+t_fdf	*allocate(void)
 {
+	t_fdf	*fdf;
+
 	fdf = (t_fdf *)malloc(sizeof(t_fdf));
-	if (!fdf)
-		return (1);
+	if (fdf == NULL)
+		return (NULL);
 	fdf->img = (t_img *)malloc(sizeof(t_img));
-	if (!fdf->img)
-		return (1);
-	return (0);
+	if (fdf->img == NULL)
+		return (NULL);
+	return (fdf);
 }
 
 int	main(int argc, char **argv)
@@ -30,7 +32,7 @@ int	main(int argc, char **argv)
 
 	if (argc == 2)
 	{
-		allocate(fdf);
+		fdf = allocate();
 		check = ft_parse(argv[1], fdf);
 		if (check < 0)
 			return (1);
