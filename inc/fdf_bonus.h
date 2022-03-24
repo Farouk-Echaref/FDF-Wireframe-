@@ -56,6 +56,7 @@ typedef struct s_fdf
 	t_img	*img;
 } 	t_fdf;
 
+void	menu(void);
 int		redraw(t_fdf *fdf);
 void	clear_image(t_fdf *fdf);
 void	clear_data(t_fdf *fdf);

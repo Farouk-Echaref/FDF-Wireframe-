@@ -36,7 +36,8 @@ FILES_B = ft_printf.o	\
 	parsing.o \
 	redraw.o \
 	render.o \
-	split.o
+	split.o \
+	menu.o
 
 B_DIR = build
 
@@ -49,9 +50,12 @@ all : $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(MFLAGS) $^ -o $@
+	@echo "\033[30;1m---> \033[0mWireframe Model (FDF) V1.0 \033[32;1m [OK] \033[0m"
+	
 
 bonus : $(OBJ_B)
 	$(CC) $(MFLAGS) $^ -o $(NAME)
+	@echo "\033[30;1m---> \033[0mWireframe Model (FDF) V1.0 \033[32;1m [OK] \033[0m"
 
 $(B_DIR)/bonus/%.o: src/bonus/%.c $(FDF_BONUS)
 	mkdir -p $(@D)
@@ -60,11 +64,13 @@ $(B_DIR)/bonus/%.o: src/bonus/%.c $(FDF_BONUS)
 $(B_DIR)/%.o: src/%.c $(FDF)
 	mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(INCLUDE) -o $@ -c  $<
-	
+
 clean :
+	@echo "\033[30;1m---> \033[0mObject files clean\033[32;1m [DONE] \033[0m"
 	rm -rf $(B_DIR)  
 
 fclean : clean
+	@echo "\033[30;1m---> \033[0mBinary files clean\033[32;1m [DONE] \033[0m"
 	rm $(NAME) 
 
 re : fclean all
