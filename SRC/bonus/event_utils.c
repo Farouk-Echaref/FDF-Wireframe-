@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Inlcude/fdf_bonus.h"
+#include "fdf_bonus.h"
 
 int	close_fdf(t_fdf *fdf)
 {
@@ -20,8 +20,19 @@ int	close_fdf(t_fdf *fdf)
 
 void	clear_data(t_fdf *fdf)
 {
+	int	i;
+
+	i = 0;
 	mlx_destroy_image(fdf->mlx_ptr, fdf->img->img_ptr);
 	mlx_destroy_window(fdf->mlx_ptr, fdf->win_ptr);
+	while (i < fdf->line_count)
+	{
+ 		free(fdf->map_colors[i]);
+		free(fdf->map_values[i]);
+		i++;
+	}
+	free(fdf->map_colors);
+	free(fdf->map_values);
 	free(fdf->img);
 	free(fdf);
 	exit(0);
@@ -50,33 +61,16 @@ int	key_option(int keynum, t_fdf *fdf)
 		fdf->posx += 20;
 	else if(keynum == ARROWLEFT)
 		fdf->posx -= 20;
-	else if (keynum == ROTATE_UP)
-		fdf->theta_x += 0.1;
-	else if (keynum == ROTATE_DOWN)
-		fdf->theta_x -= 0.1;
-	else if (keynum == ROTATE_LEFT)
-		fdf->theta_y += 0.1;
 	else if (keynum == ROTATE_RIGHT)
+		fdf->theta_x += 0.1;
+	else if (keynum == ROTATE_LEFT)
+		fdf->theta_x -= 0.1;
+	else if (keynum == ROTATE_DOWN)
+		fdf->theta_y += 0.1;
+	else if (keynum == ROTATE_UP)
 		fdf->theta_y -= 0.1;
 	else if (keynum == ESC_KEY)
 		clear_data(fdf);
 	redraw(fdf);
 	return (0);
 }
-
-
-
-// int esc_press(int key, t_fdf *fdf)
-// {
-// 	if (key == ESC_KEY)
-// 	{
-// 		mlx_destroy_image(fdf->mlx_ptr, fdf->img);
-// 		mlx_destroy_window(fdf->mlx_ptr, fdf->win_ptr);
-// 		ft_free_arr(fdf->fdf_colors, fdf->line_count);
-// 		ft_free_arr(fdf->fdf_values, fdf->line_count);
-// 		free(fdf->img);
-// 		free(fdf);
-// 		exit(1);
-// 	}
-// 	return (0);
-// }

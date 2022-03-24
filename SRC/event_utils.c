@@ -10,12 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Inlcude/fdf.h"
+#include "fdf.h"
 
 void	clear_data(t_fdf *fdf)
 {
+	int	i;
+
+	i = 0;
 	mlx_destroy_image(fdf->mlx_ptr, fdf->img->img_ptr);
 	mlx_destroy_window(fdf->mlx_ptr, fdf->win_ptr);
+	while (i < fdf->line_count)
+	{
+ 		free(fdf->map_colors[i]);
+		free(fdf->map_values[i]);
+		i++;
+	}
+	free(fdf->map_colors);
+	free(fdf->map_values);
 	free(fdf->img);
 	free(fdf);
 	exit(0);

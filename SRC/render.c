@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Inlcude/fdf.h"
+#include "fdf.h"
 
 int draw_line(t_fdf *fdf, t_point p1, t_point p2)
 {

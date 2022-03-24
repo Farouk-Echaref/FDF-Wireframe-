@@ -1,4 +1,4 @@
-#include "../Inlcude/fdf_bonus.h"
+#include "fdf_bonus.h"
 
 void	clear_image(t_fdf *fdf)
 {

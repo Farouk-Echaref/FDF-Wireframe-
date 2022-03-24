@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Inlcude/fdf_bonus.h"
+#include "fdf_bonus.h"
 
 int hex2int(char *hex) 
 {
@@ -40,7 +40,7 @@ int hex2int(char *hex)
 	return (val);
 }
 
-void copy_data(int *value_arr, int *color_arr, char *line, t_fdf *fdf, int c)
+void copy_data(int *value_arr, int *color_arr, char *line, t_fdf *fdf)
 {
 	int		i;
 	char	*check;
@@ -80,7 +80,7 @@ int ft_parse(char *path, t_fdf *fdf)
 		fdf->map_values[i] = (int *)malloc(sizeof(int) * (fdf->word_count));
 		fdf->map_colors[i] = (int *)malloc(sizeof(int) * (fdf->word_count));
 		line = get_next_line(fd);
-		copy_data(fdf->map_values[i],fdf->map_colors[i], line, fdf, fdf->word_count);
+		copy_data(fdf->map_values[i],fdf->map_colors[i], line, fdf);
 		free(line);
 		i++;
 	}

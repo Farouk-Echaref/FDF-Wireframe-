@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Inlcude/fdf_bonus.h"
+#include "fdf_bonus.h"
 
 void	check_fd(int fd)
 {

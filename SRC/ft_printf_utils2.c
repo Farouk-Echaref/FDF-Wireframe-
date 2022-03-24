@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Inlcude/fdf.h"
+#include "fdf.h"
 
 int	ft_print_lower_hexa(long unsigned int nb)
 {

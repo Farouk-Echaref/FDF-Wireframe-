@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Inlcude/fdf.h"
+#include "fdf.h"
 
 void	plot_point(t_point *p, int x, int y, int color)
 {

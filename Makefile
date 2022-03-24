@@ -1,67 +1,72 @@
-SRCS = SRC/ft_printf.c	\
-	SRC/ft_printf_utils.c	\
-	SRC/ft_printf_utils2.c	\
-	SRC/draw_tools.c  \
-	SRC/event_utils.c  \
-	SRC/fdf.c \
-	SRC/ft_atoi.c \
-	SRC/get_next_line.c \
-	SRC/get_next_line_utils.c \
-	SRC/init_win.c \
-	SRC/parse_utils.c \
-	SRC/parsing.c \
-	SRC/render.c \
-	SRC/split.c \
 
-SRCS_BONUS = SRC_BONUS/ft_printf.c	\
-	SRC_BONUS/ft_printf_utils.c	\
-	SRC_BONUS/ft_printf_utils2.c	\
-	SRC_BONUS/draw_tools.c  \
-	SRC_BONUS/event_utils.c  \
-	SRC_BONUS/fdf.c \
-	SRC_BONUS/ft_atoi.c \
-	SRC_BONUS/get_next_line.c \
-	SRC_BONUS/get_next_line_utils.c \
-	SRC_BONUS/init_win.c \
-	SRC_BONUS/parse_utils.c \
-	SRC_BONUS/parsing.c \
-	SRC_BONUS/redraw.c \
-	SRC_BONUS/render.c \
-	SRC_BONUS/split.c \
-
-NAME = fdf
-FDF = /Include/fdf.h 
-FDF_BONUS = /Include/fdf_bonus.h
 CC = cc
 CFLAGS = -Wall -Werror -Wextra 
 MFLAGS = -lm -lmlx -framework OpenGL -framework Appkit
-RM = rm -rf
-OBJ = Objects/$(SRC:.c)=.o
-OBJ_B = Objects_Bonus/$(SRC_B:.c)=.o
+INCLUDE = -I./inc
 
+FDF = inc/fdf.h 
+FDF_BONUS = inc/fdf_bonus.h
 
+FILES = ft_printf.o	\
+	ft_printf_utils.o	\
+	ft_printf_utils2.o	\
+	draw_tools.o  \
+	event_utils.o  \
+	fdf.o \
+	ft_atoi.o \
+	get_next_line.o \
+	get_next_line_utils.o \
+	init_win.o \
+	parse_utils.o \
+	parsing.o \
+	render.o \
+	split.o
+
+FILES_B = ft_printf.o	\
+	ft_printf_utils.o	\
+	ft_printf_utils2.o	\
+	draw_tools.o  \
+	event_utils.o  \
+	fdf.o \
+	ft_atoi.o \
+	get_next_line.o \
+	get_next_line_utils.o \
+	init_win.o \
+	parse_utils.o \
+	parsing.o \
+	redraw.o \
+	render.o \
+	split.o
+
+B_DIR = build
+
+OBJ = $(addprefix $(B_DIR)/, $(FILES))
+OBJ_B = $(addprefix $(B_DIR)/bonus/, $(FILES_B))
+
+NAME = fdf
 
 all : $(NAME)
 
-$(NAME): $(OBJ) 
-	$(CC)  $(CFLAGS) $(OBJ) -o $@ $(MFLAGS) 
-
-Objects/%.o :$(SRC)/%.c .$(FDF)
-	$(CC) $(CFLAGS) -o $@ -c  $< 
-
+$(NAME): $(OBJ)
+	$(CC) $(MFLAGS) $^ -o $@
 
 bonus : $(OBJ_B)
-	cc $(FLAGS)  $(OBJ_B) -o $(NAME) $(MFLAGS)
-	
-Objects_Bonus/%.o: SRC_BONUS/%.c $(FDF_BONUS)
-	cc $(FLAGS) -c $< -o $@ 
+	$(CC) $(MFLAGS) $^ -o $(NAME)
 
+$(B_DIR)/bonus/%.o: src/bonus/%.c $(FDF_BONUS)
+	mkdir -p $(@D)
+	$(CC) $(CFLAGS) $(INCLUDE) -o $@ -c  $<
+
+$(B_DIR)/%.o: src/%.c $(FDF)
+	mkdir -p $(@D)
+	$(CC) $(CFLAGS) $(INCLUDE) -o $@ -c  $<
+	
 clean :
-	$(RM) $(OBJ) $(OBJ_B)  
+	rm -rf $(B_DIR)  
 
 fclean : clean
-	$(RM) $(NAME) $(OBJ) $(OBJ_B)  
+	rm $(NAME) 
 
-re : fclean $(NAME) clean
+re : fclean all
 
 .PHONY : all bonus clean fclean re 

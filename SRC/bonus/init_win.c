@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Inlcude/fdf_bonus.h"
+#include "fdf_bonus.h"
 
 void	resize_map(t_fdf *fdf)
 {
